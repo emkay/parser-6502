@@ -1,0 +1,33 @@
+{
+  "name": "parser-6502",
+  "version": "1.0.0",
+  "description": "Parser for 6502 assembler.",
+  "main": "index.js",
+  "dependencies": {
+    "mona": "^0.9.1"
+  },
+  "devDependencies": {
+    "standard": "^8.1.0",
+    "tap": "^7.1.2"
+  },
+  "scripts": {
+    "test": "tap test/*.js --cov && standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emkay/parser-6502.git"
+  },
+  "keywords": [
+    "parser",
+    "6502",
+    "nesly",
+    "nes",
+    "assembler"
+  ],
+  "author": "Michael Matuzak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emkay/parser-6502/issues"
+  },
+  "homepage": "https://github.com/emkay/parser-6502#readme"
+}
