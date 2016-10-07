@@ -1,5 +1,5 @@
 const mona = require('mona')
-const parameters = require('./parameters')
+const parameters = require('./parameters').parameters
 
 const instructions = [
   'adc', 'and', 'asl',
@@ -25,7 +25,8 @@ function instructionName () {
 function instruction () {
   return mona.sequence((s) => {
     const i = s(instructionName())
-    const args = s(mona.map((a) => (a[0]), parameters()))
+    const space = s(mona.spaces())
+    const args = s(mona.maybe(parameters()))
     // const nl = s(mona.eol())
     return mona.value({
       instruction: i,

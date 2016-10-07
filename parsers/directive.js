@@ -1,5 +1,5 @@
 const mona = require('mona')
-const parameters = require('./parameters')
+const parameters = require('./parameters').parameters
 
 function directiveName () {
   return mona.oneOf([
@@ -23,7 +23,8 @@ function directiveName () {
 function directive () {
   return mona.sequence((s) => {
     const d = s(directiveName())
-    const args = s(mona.map((a) => (a[0]), parameters()))
+    const space = s(mona.spaces())
+    const args = s(parameters())
     // const nl = s(mona.eol())
 
     return mona.value({

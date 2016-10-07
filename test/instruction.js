@@ -13,7 +13,12 @@ tap.test('will parse an instruction', (t) => {
 tap.test('will parse an instruction with args', (t) => {
   t.plan(1)
   t.deepEqual(mona.parse(instructionParser(), 'stx $2000'), {
-    args: ['$,2000'],
+    args: [
+      [
+        'address',
+        '2000'
+      ]
+    ],
     instruction: 'stx'
   })
 })

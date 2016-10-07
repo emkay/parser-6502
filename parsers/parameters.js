@@ -6,54 +6,101 @@ function quotedChar () {
                           mona.value('"')))
 }
 
-// pulled out, because in the future, this might be more detailed!
-// <parameter> ::= <alphanum>+
-function parameter () {
-  const param = () => {
-    return mona.or(
-      mona.join(
-        mona.string('$'),
-        mona.alphanum()
-      ),
-      mona.join(
-        mona.string('#'),
-        mona.string('$'),
-        mona.alphanum()
-      ),
-      mona.join(
-        mona.string('#'),
-        mona.string('%'),
-        mona.alphanum()
-      ),
-      mona.join(
-        mona.string('%'),
-        mona.alphanum()
-      ),
-      mona.between(
-        mona.string('"'),
-        mona.string('"'),
-        mona.text(quotedChar())
-      ),
+function alphanum () {
+  return mona.join(
+    mona.value('alphanum'),
+    mona.string('background3')
+  )
+}
+
+function bit () {
+  return mona.join(
+    mona.value('digit'),
+    mona.digit(2)
+  )
+}
+
+function string () {
+  return mona.join(
+    mona.value('string'),
+    mona.between(
+      mona.string('"'),
+      mona.string('"'),
+      mona.text(quotedChar())
+    )
+  )
+}
+
+function hex () {
+  return mona.join(
+    mona.and(
+      mona.string('#$'),
+      mona.value('hex')
+    ),
+    mona.text(
+      mona.digit(16)
+    )
+  )
+}
+
+function binary () {
+  return mona.join(
+    mona.and(
+      mona.maybe(mona.string('#')),
+      mona.string('%'),
+      mona.value('binary')
+    ),
+    mona.text(
+      mona.digit(2)
+    )
+  )
+}
+
+function address () {
+  return mona.join(
+    mona.and(
+      mona.string('$'),
+      mona.value('address')
+    ),
+    mona.text(
       mona.alphanum()
     )
-  }
+  )
+}
 
-  return mona.text(param(), {min: 1})
+function parameter () {
+  return mona.collect(
+    mona.or(
+      address(),
+      binary(),
+      hex(),
+      string(),
+      bit(),
+      alphanum()
+    )
+  )
 }
 
 function parameters () {
-  return mona.collect(
-    mona.and(
-      mona.spaces(),
-      mona.split(
-        parameter(),
-        mona.or(
-          mona.and(mona.string(','), mona.spaces()),
-          mona.string(',')
-        )
+  return mona.map(a => a.map(b => b[0]),
+    mona.split(
+      parameter(),
+      mona.or(
+        mona.and(mona.string(','), mona.spaces()),
+        mona.string(','),
+        mona.spaces()
       )
     )
   )
 }
 
-module.exports = parameters
+module.exports = {
+  parameter,
+  parameters,
+  address,
+  binary,
+  hex,
+  string,
+  bit,
+  alphanum
+}
