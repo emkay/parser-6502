@@ -4,7 +4,7 @@ const instructionParser = require('../parsers/instruction')
 
 tap.test('will parse an instruction', (t) => {
   t.plan(1)
-  t.deepEqual(mona.parse(instructionParser(), 'sei'), {
+  t.deepEqual(mona.parse(instructionParser(), 'sei\n'), {
     args: null,
     instruction: 'sei'
   })
@@ -12,7 +12,7 @@ tap.test('will parse an instruction', (t) => {
 
 tap.test('will parse an instruction with args', (t) => {
   t.plan(1)
-  t.deepEqual(mona.parse(instructionParser(), 'stx $2000'), {
+  t.deepEqual(mona.parse(instructionParser(), 'stx $2000\n'), {
     args: [
       [
         'address',
@@ -25,7 +25,7 @@ tap.test('will parse an instruction with args', (t) => {
 
 tap.test('will parse an instruction with multiple args', (t) => {
   t.plan(1)
-  t.deepEqual(mona.parse(instructionParser(), 'lda background3, x'), {
+  t.deepEqual(mona.parse(instructionParser(), 'lda background3, x\n'), {
     args: ['background3', 'x'],
     instruction: 'lda'
   })

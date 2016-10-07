@@ -8,7 +8,10 @@ tap.test('should parse the basics', (t) => {
     {
       directive: '.org',
       args: [
-        '$,C000'
+        [
+          'address',
+          'C000'
+        ]
       ]
     },
     {

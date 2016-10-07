@@ -1,16 +1,11 @@
 const mona = require('mona')
 
 function quotedChar () {
-  return mona.or(mona.noneOf('"'),
-                 mona.and(mona.string('""'),
-                          mona.value('"')))
-}
-
-function alphanum () {
-  return mona.join(
-    mona.value('alphanum'),
-    mona.string('background3')
-  )
+  return mona.or(
+    mona.noneOf('"'),
+    mona.and(
+      mona.string('""'),
+      mona.value('"')))
 }
 
 function bit () {
@@ -68,28 +63,39 @@ function address () {
   )
 }
 
-function parameter () {
-  return mona.collect(
-    mona.or(
-      address(),
-      binary(),
-      hex(),
-      string(),
-      bit(),
-      alphanum()
+// this is the fallthrough parser
+function alphanum () {
+  return mona.join(
+    mona.value('alphanum'),
+    mona.and(
+      mona.not(bit()),
+      mona.not(address()),
+      mona.not(binary()),
+      mona.not(bit()),
+      mona.not(string()),
+      mona.text(mona.alphanum())
     )
   )
 }
 
+function parameter () {
+  return mona.or(
+    address(),
+    binary(),
+    hex(),
+    string(),
+    bit(),
+    alphanum()
+  )
+}
+
 function parameters () {
-  return mona.map(a => a.map(b => b[0]),
-    mona.split(
-      parameter(),
-      mona.or(
-        mona.and(mona.string(','), mona.spaces()),
-        mona.string(','),
-        mona.spaces()
-      )
+  return mona.split(
+    parameter(),
+    mona.or(
+      mona.and(mona.string(','), mona.spaces()),
+      mona.string(','),
+      mona.spaces()
     )
   )
 }
