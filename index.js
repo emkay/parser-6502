@@ -11,7 +11,8 @@ function assembler (input) {
         directive(),
         instruction(),
         label(),
-        mona.eol()
+        mona.eol(),
+        mona.eof()
       )
     ),
     input

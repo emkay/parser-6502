@@ -24,16 +24,24 @@ function instructionName () {
 
 function instruction () {
   return mona.sequence((s) => {
-    const i = s(instructionName())
+    const i = s(
+      mona.followedBy(
+        instructionName(),
+        mona.maybe(mona.eol())
+      )
+    )
+
     const args = s(
       mona.maybe(
         mona.and(
           mona.spaces(),
-          parameters()
+          mona.followedBy(
+            parameters(),
+            mona.maybe(mona.eol())
+          )
         )
       )
     )
-    const nl = s(mona.eol())
     return mona.value({
       instruction: i,
       args: args

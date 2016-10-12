@@ -5,7 +5,7 @@ const instructionParser = require('../parsers/instruction')
 tap.test('will parse an instruction', (t) => {
   t.plan(1)
   t.deepEqual(mona.parse(instructionParser(), 'sei\n'), {
-    args: [],
+    args: null,
     instruction: 'sei'
   })
 })
