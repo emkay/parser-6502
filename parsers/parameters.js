@@ -8,8 +8,8 @@ function quotedChar () {
       mona.value('"')))
 }
 
-function bit () {
-  return mona.digit(2)
+function digit () {
+  return mona.text(mona.digit(), {min: 1})
 }
 
 function string () {
@@ -45,7 +45,7 @@ function address () {
 // this is the fallthrough parser
 function alphanum () {
   return mona.and(
-    mona.not(bit()),
+    mona.not(digit()),
     mona.not(address()),
     mona.not(binary()),
     mona.not(hex()),
@@ -63,7 +63,7 @@ function parameter () {
     mona.tag(binary(), 'binary'),
     mona.tag(hex(), 'hex'),
     mona.tag(string(), 'string'),
-    mona.tag(bit(), 'bit'),
+    mona.tag(digit(), 'digit'),
     mona.tag(alphanum(), 'alphanum')
   )
 }
@@ -71,11 +71,7 @@ function parameter () {
 function parameters () {
   return mona.split(
     parameter(),
-    mona.or(
-      mona.and(mona.string(','), mona.spaces()),
-      mona.string(','),
-      mona.spaces()
-    )
+    mona.trim(mona.string(','))
   )
 }
 

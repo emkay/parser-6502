@@ -10,6 +10,14 @@ tap.test('should parse direct memory address param', (t) => {
   })
 })
 
+tap.test('should parse decimal param', (t) => {
+  t.plan(1)
+  const input = '17'
+  t.deepEqual(mona.parse(parsers.parameter(), input), {
+    'digit': '17'
+  })
+})
+
 tap.test('should parse alphanum param', (t) => {
   t.plan(1)
   const input = 'background3'

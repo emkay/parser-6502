@@ -7,7 +7,7 @@ tap.test('will parse a directive', (t) => {
   t.deepEqual(mona.parse(directiveParser(), '.inesprg 1\n'), {
     args: [
       {
-        'bit': '1'
+        'digit': '1'
       }
     ],
     directive: '.inesprg'

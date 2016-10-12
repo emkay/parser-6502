@@ -22,9 +22,17 @@ function directiveName () {
 function directive () {
   return mona.sequence((s) => {
     const d = s(directiveName())
-    const space = s(mona.spaces())
-    const args = s(parameters())
-    const nl = s(mona.eol())
+    const args = s(
+      mona.maybe(
+        mona.and(
+          mona.spaces(),
+          mona.followedBy(
+            parameters(),
+            mona.eol()
+          )
+        )
+      )
+    )
 
     return mona.value({
       directive: d,
