@@ -11,8 +11,7 @@ function assembler (input) {
         directive(),
         instruction(),
         label(),
-        mona.eol(),
-        mona.eof()
+        mona.eol()
       )
     ),
     input
@@ -20,5 +19,3 @@ function assembler (input) {
 }
 
 module.exports = assembler
-// const result = mona.parse(mona.collect(assembler()), c)
-// console.log(result)
