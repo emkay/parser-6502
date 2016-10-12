@@ -15,7 +15,7 @@ tap.test('should parse the basics', (t) => {
       ]
     },
     {
-      label: 'RESET:'
+      label: 'RESET'
     }
   ])
 })

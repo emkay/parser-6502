@@ -16,14 +16,14 @@ function string () {
   return mona.between(
     mona.string('"'),
     mona.string('"'),
-    mona.text(quotedChar())
+    mona.text(quotedChar(), {min: 1})
   )
 }
 
 function hex () {
   return mona.and(
     mona.string('#$'),
-    mona.text(mona.digit(16))
+    mona.text(mona.digit(16), {min: 1})
   )
 }
 
@@ -31,14 +31,14 @@ function binary () {
   return mona.and(
     mona.maybe(mona.string('#')),
     mona.string('%'),
-    mona.text(mona.digit(2))
+    mona.text(mona.digit(2), {min: 1})
   )
 }
 
 function address () {
   return mona.and(
     mona.string('$'),
-    mona.text(mona.alphanum())
+    mona.text(mona.alphanum(), {min: 1})
   )
 }
 
@@ -51,7 +51,8 @@ function alphanum () {
     mona.not(hex()),
     mona.not(string()),
     mona.text(
-      mona.alphanum()
+      mona.alphanum(),
+      {min: 1}
     )
   )
 }

@@ -25,9 +25,15 @@ function instructionName () {
 function instruction () {
   return mona.sequence((s) => {
     const i = s(instructionName())
-    const space = s(mona.maybe(mona.spaces()))
-    const args = s(mona.maybe(parameters()))
-    // const nl = s(mona.eol())
+    const args = s(
+      mona.maybe(
+        mona.and(
+          mona.spaces(),
+          parameters()
+        )
+      )
+    )
+    const nl = s(mona.eol())
     return mona.value({
       instruction: i,
       args: args

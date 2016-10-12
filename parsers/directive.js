@@ -19,13 +19,12 @@ function directiveName () {
   ])
 }
 
-// <directive> ::= <directive-name> [<spaces> <parameter>]*
 function directive () {
   return mona.sequence((s) => {
     const d = s(directiveName())
     const space = s(mona.spaces())
     const args = s(parameters())
-    // const nl = s(mona.eol())
+    const nl = s(mona.eol())
 
     return mona.value({
       directive: d,
