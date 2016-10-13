@@ -12,7 +12,7 @@
     "tap": "^7.1.2"
   },
   "scripts": {
-    "release": "standard-version",
+    "release": "npm test && standard-version && git push origin master && npm publish",
     "test": "tap test/*.js --cov && standard"
   },
   "repository": {
