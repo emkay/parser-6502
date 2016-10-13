@@ -1,5 +1,5 @@
 const fs = require('fs')
-const parser = require('.')
-const input = fs.readFileSync('./example.s', 'utf-8')
+const parser = require('..')
+const input = fs.readFileSync(`${__dirname}/example.s`, 'utf-8')
 const r = parser(input)
-console.log(r)
+console.log(r[102].args)
