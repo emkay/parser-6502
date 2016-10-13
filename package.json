@@ -1,6 +1,6 @@
 {
   "name": "parser-6502",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parser for 6502 assembler.",
   "main": "index.js",
   "dependencies": {
@@ -8,9 +8,11 @@
   },
   "devDependencies": {
     "standard": "^8.1.0",
+    "standard-version": "^3.0.0",
     "tap": "^7.1.2"
   },
   "scripts": {
+    "release": "standard-version",
     "test": "tap test/*.js --cov && standard"
   },
   "repository": {
