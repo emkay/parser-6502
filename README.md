@@ -37,7 +37,7 @@ console.log(result)
 
 ## Installation
 
-`npm i paser-6502`
+`npm i parser-6502`
 
 ## License
 
