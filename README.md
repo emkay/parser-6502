@@ -1,4 +1,6 @@
 # parser-6502
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/emkay/parser-6502.svg)](https://greenkeeper.io/)
 Parser for 6502 assembler
 
 This is a parser written in javascript that will parse assembler written for the [6502 8-bit microprocessor](https://en.wikipedia.org/wiki/MOS_Technology_6502).
