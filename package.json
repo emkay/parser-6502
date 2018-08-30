@@ -7,7 +7,7 @@
     "mona": "^0.9.1"
   },
   "devDependencies": {
-    "standard": "^11.0.0",
+    "standard": "^12.0.1",
     "standard-version": "^4.0.0",
     "tap": "^12.0.0",
     "weallbehave": "^1.2.0",
