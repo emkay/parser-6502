@@ -1,6 +1,6 @@
 {
   "name": "parser-6502",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Parser for 6502 assembler.",
   "main": "index.js",
   "dependencies": {
